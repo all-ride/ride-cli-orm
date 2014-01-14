@@ -1,0 +1,19 @@
+{
+    "dependencies": [
+        {
+            "interfaces": "pallo\\library\\cli\\command\\Command", 
+            "class": "pallo\\cli\\command\\orm\\OrmDefineCommand",
+            "id": "orm.define"
+        },
+        {
+            "interfaces": "pallo\\library\\cli\\command\\Command",
+            "class": "pallo\\cli\\command\\orm\\OrmModelSearchCommand",
+            "id": "orm.model.search"
+        },
+        {
+            "interfaces": "pallo\\library\\cli\\command\\Command",
+            "class": "pallo\\cli\\command\\orm\\OrmModelGetCommand",
+            "id": "orm.model.get"
+        }
+    ]
+}
