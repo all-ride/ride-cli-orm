@@ -1,13 +1,13 @@
 <?php
 
-namespace pallo\cli\command\orm;
+namespace ride\cli\command\orm;
 
-use pallo\library\cli\command\AbstractCommand;
-use pallo\library\orm\definition\field\BelongsToField;
-use pallo\library\orm\definition\field\HasManyField;
-use pallo\library\orm\definition\field\HasOneField;
-use pallo\library\orm\definition\field\RelationField;
-use pallo\library\orm\OrmManager;
+use ride\library\cli\command\AbstractCommand;
+use ride\library\orm\definition\field\BelongsToField;
+use ride\library\orm\definition\field\HasManyField;
+use ride\library\orm\definition\field\HasOneField;
+use ride\library\orm\definition\field\RelationField;
+use ride\library\orm\OrmManager;
 
 /**
  * Command to get the definition of a model

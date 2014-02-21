@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\cli\command\orm;
+namespace ride\cli\command\orm;
 
-use pallo\library\cli\command\AbstractCommand;
-use pallo\library\orm\OrmManager;
+use ride\library\cli\command\AbstractCommand;
+use ride\library\orm\OrmManager;
 
 /**
  * Command to search for ORM models
@@ -12,7 +12,7 @@ class OrmModelSearchCommand extends AbstractCommand {
 
     /**
      * Constructs a new orm command
-     * @param pallo\library\orm\OrmManager $orm
+     * @param ride\library\orm\OrmManager $orm
      * @return null
      */
     public function __construct(OrmManager $orm) {
