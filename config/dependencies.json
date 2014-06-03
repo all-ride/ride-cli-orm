@@ -1,9 +1,28 @@
 {
     "dependencies": [
         {
-            "interfaces": "ride\\library\\cli\\command\\Command", 
+            "interfaces": "ride\\library\\cli\\command\\Command",
             "class": "ride\\cli\\command\\orm\\OrmDefineCommand",
             "id": "orm.define"
+        },
+        {
+            "interfaces": "ride\\library\\cli\\command\\Command",
+            "class": "ride\\cli\\command\\orm\\OrmGenerateCommand",
+            "id": "orm.generate",
+            "calls": [
+                {
+                    "method": "__construct",
+                    "arguments": [
+                        {
+                            "name": "generators",
+                            "type": "dependencies",
+                            "properties": {
+                                "interface": "ride\\library\\orm\\entry\\generator\\EntryGenerator"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "interfaces": "ride\\library\\cli\\command\\Command",
