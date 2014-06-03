@@ -2,7 +2,7 @@
     "name": "ride/cli-orm",
     "description": "ORM commands for the Ride CLI",
     "license": "MIT",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -10,13 +10,13 @@
         }
     ],
     "require": {
-        "ride/app-orm": ">=0.1.0",
+        "ride/app-orm": ">=0.2.0",
         "ride/lib-cli": ">=0.1.0",
-        "ride/lib-orm": ">=0.1.0"
-    }, 
+        "ride/lib-orm": ">=0.3.0"
+    },
     "autoload": {
         "psr-0": {
-            "ride\\cli\\command\\orm\\": ["src/", "test/src/"]
+            "ride\\cli\\command\\orm\\": ["src/"]
         }
     }
 }
