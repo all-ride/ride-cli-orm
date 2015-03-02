@@ -2,7 +2,8 @@
 
 namespace ride\cli\command\orm;
 
-use ride\library\cli\command\AbstractCommand;
+use ride\cli\command\AbstractCommand;
+
 use ride\library\orm\OrmManager;
 
 /**
@@ -11,27 +12,20 @@ use ride\library\orm\OrmManager;
 class OrmDefineCommand extends AbstractCommand {
 
     /**
-     * Instance of the ORM
-     * @var ride\library\orm\OrmManager
-     */
-    protected $orm;
-
-    /**
-     * Constructs a new orm define command
+     * Initializes the command
      * @return null
      */
-    public function __construct(OrmManager $orm) {
-        parent::__construct('orm define', 'Define the models in the database');
-
-        $this->orm = $orm;
+    protected function initialize() {
+        $this->setDescription('Define the models in the database');
     }
 
     /**
      * Executes the command
+     * @param ride\library\orm\OrmManager $orm
      * @return null
      */
-    public function execute() {
-        $this->orm->defineModels();
+    public function invoke(OrmManager $orm) {
+        $orm->defineModels();
     }
 
 }

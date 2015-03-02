@@ -1,0 +1,22 @@
+{
+    "commands": [
+        {
+            "name": "orm define",
+            "aliases": "od",
+            "class": "ride\\cli\\command\\orm\\OrmDefineCommand"
+        },
+        {
+            "name": "orm generate",
+            "aliases": "og",
+            "class": "ride\\cli\\command\\orm\\OrmGenerateCommand"
+        },
+        {
+            "name": "orm model",
+            "class": "ride\\cli\\command\\orm\\OrmModelSearchCommand"
+        },
+        {
+            "name": "orm model get",
+            "class": "ride\\cli\\command\\orm\\OrmModelGetCommand"
+        }
+    ]
+}

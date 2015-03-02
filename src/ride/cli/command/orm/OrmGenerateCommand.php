@@ -2,11 +2,8 @@
 
 namespace ride\cli\command\orm;
 
-use ride\library\cli\command\AbstractCommand;
-use ride\library\generator\GenericCodeGenerator;
-use ride\library\orm\entry\generator\GenericEntryGenerator;
-use ride\library\orm\entry\generator\ModelEntryGenerator;
-use ride\library\orm\entry\generator\ProxyEntryGenerator;
+use ride\cli\command\AbstractCommand;
+
 use ride\library\orm\OrmManager;
 use ride\library\system\file\browser\FileBrowser;
 
@@ -16,36 +13,30 @@ use ride\library\system\file\browser\FileBrowser;
 class OrmGenerateCommand extends AbstractCommand {
 
     /**
-     * Instance of the ORM
-     * @var ride\library\orm\OrmManager
-     */
-    protected $orm;
-
-    /**
-     * Constructs a new orm define command
+     * Initializes the command
      * @return null
      */
-    public function __construct(OrmManager $orm, FileBrowser $fileBrowser, array $generators) {
-        parent::__construct('orm generate', 'Generate the model classes');
-
-        $this->orm = $orm;
-        $this->fileBrowser = $fileBrowser;
-        $this->generators = $generators;
+    protected function initialize() {
+        $this->setDescription('Generate the model classes');
     }
 
     /**
      * Executes the command
+     * @param ride\library\orm\OrmManager $orm
+     * @param ride\library\system\file\browser\FileBrowser $fileBrowser
      * @return null
      */
-    public function execute() {
-        $sourcePath = $this->fileBrowser->getApplicationDirectory()->getChild('src');
+    public function invoke(OrmManager $orm, FileBrowser $fileBrowser) {
+        $generators = $this->dependencyInjector->getAll('ride\\library\\orm\\entry\\generator\\EntryGenerator');
 
-        $modelRegister = $this->orm->getModelLoader()->getModelRegister();
+        $sourcePath = $fileBrowser->getApplicationDirectory()->getChild('src');
+
+        $modelRegister = $orm->getModelLoader()->getModelRegister();
         $models = $modelRegister->getModels();
         foreach ($models as $model) {
             $modelName = $model->getName();
 
-            foreach ($this->generators as $generator) {
+            foreach ($generators as $generator) {
                 $generator->generate($modelRegister, $modelName, $sourcePath);
             }
         }

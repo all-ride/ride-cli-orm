@@ -2,7 +2,8 @@
 
 namespace ride\cli\command\orm;
 
-use ride\library\cli\command\AbstractCommand;
+use ride\cli\command\AbstractCommand;
+
 use ride\library\orm\definition\field\BelongsToField;
 use ride\library\orm\definition\field\HasManyField;
 use ride\library\orm\definition\field\HasOneField;
@@ -15,24 +16,22 @@ use ride\library\orm\OrmManager;
 class OrmModelGetCommand extends AbstractCommand {
 
     /**
-     * Constructs a new orm model get command
+     * Initializes the command
      * @return null
      */
-    public function __construct(OrmManager $orm) {
-        parent::__construct('orm model get', 'Get the definition of a model');
+    protected function initialize() {
+        $this->setDescription('Get the definition of a model');
 
         $this->addArgument('name', 'Name of the model', true);
-
-        $this->orm = $orm;
     }
 
     /**
      * Executes the command
+     * @param ride\library\orm\OrmManager $orm
+     * @param string $name Name of the model
      * @return null
      */
-    public function execute() {
-        $name = $this->input->getArgument('name');
-
+    public function invoke(OrmManager $orm, $name) {
         $model = $this->orm->getModel($name);
         $meta = $model->getMeta();
         $table = $meta->getModelTable();
