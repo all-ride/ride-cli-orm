@@ -2,7 +2,8 @@
 
 namespace ride\cli\command\orm;
 
-use ride\library\cli\command\AbstractCommand;
+use ride\cli\command\AbstractCommand;
+
 use ride\library\orm\OrmManager;
 
 /**
@@ -11,26 +12,24 @@ use ride\library\orm\OrmManager;
 class OrmModelSearchCommand extends AbstractCommand {
 
     /**
-     * Constructs a new orm command
-     * @param ride\library\orm\OrmManager $orm
+     * Initializes the command
      * @return null
      */
-    public function __construct(OrmManager $orm) {
-        parent::__construct('orm model', 'Show an overview of the defined models');
+    protected function initialize() {
+        $this->setDescription('Show an overview of the defined models');
 
         $this->addArgument('query', 'Query to search the models', false);
-
-        $this->orm = $orm;
     }
 
     /**
      * Executes the command
+     * @param ride\library\orm\OrmManager $orm
+     * @param string $query Query to search the models
      * @return null
      */
-    public function execute() {
+    public function invoke(OrmManager $orm, $query = null) {
         $models = $this->orm->getModelLoader()->getModels(true);
 
-        $query = $this->input->getArgument('query');
         if ($query) {
             foreach ($models as $name => $model) {
                 if (stripos($name, $query) !== false) {
