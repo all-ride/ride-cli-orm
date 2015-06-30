@@ -28,7 +28,7 @@ class OrmModelSearchCommand extends AbstractCommand {
      * @return null
      */
     public function invoke(OrmManager $orm, $query = null) {
-        $models = $this->orm->getModelLoader()->getModels(true);
+        $models = $orm->getModelLoader()->getModels(true);
 
         if ($query) {
             foreach ($models as $name => $model) {

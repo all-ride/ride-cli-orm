@@ -6,8 +6,10 @@ use ride\cli\command\AbstractCommand;
 
 use ride\library\orm\OrmManager;
 
+use \Exception;
+
 /**
- * Command to search for ORM models
+ * Command to save all entries of a ORM model
  */
 class OrmUpdateEntriesCommand extends AbstractCommand {
 
@@ -28,15 +30,29 @@ class OrmUpdateEntriesCommand extends AbstractCommand {
      * @return null
      */
     public function invoke(OrmManager $orm, $model) {
+        // lookup entries
         $model = $orm->getModel($model);
-
         $entries = $model->find();
 
+        // check if dated entries
+        $entry = reset($entries);
+        if ($entry && !method_exists($entry, 'setDateModified')) {
+            throw new Exception('Could not update entries from model ' . $model->getName() . ': no dated entries');
+        }
+
+        // save all entries
         foreach ($entries as $entry) {
-            echo "Saving " . strtolower($model->getName()) . " entry with ID = " . $entry->getId() . ' ... ';
+            $this->output->write("Saving entry #" . $entry->getId() . ' ... ');
+
             $entry->setDateModified(time());
-            $model->save($entry);
-            echo "Done\n";
+
+            try {
+                $model->save($entry);
+
+                $this->output->writeLine('V');
+            } catch (Exception $exception) {
+                $this->output->writeLine('X');
+            }
         }
     }
 
