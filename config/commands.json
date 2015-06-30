@@ -17,6 +17,10 @@
         {
             "name": "orm model get",
             "class": "ride\\cli\\command\\orm\\OrmModelGetCommand"
+        },
+        {
+            "name": "orm entries update",
+            "class": "ride\\cli\\command\\orm\\OrmUpdateEntriesCommand"
         }
     ]
 }

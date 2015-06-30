@@ -32,17 +32,18 @@ class OrmModelGetCommand extends AbstractCommand {
      * @return null
      */
     public function invoke(OrmManager $orm, $name) {
-        $model = $this->orm->getModel($name);
+        $model = $orm->getModel($name);
+
         $meta = $model->getMeta();
         $table = $meta->getModelTable();
         $fields = $table->getFields();
         $indexes = $table->getIndexes();
-        $formats = $table->getDataFormats();
+        $formats = $table->getFormats();
         $options = $table->getOptions();
 
         $this->output->writeLine($name . ':');
         $this->output->writeLine('- model class: ' . get_class($model));
-        $this->output->writeLine('- data class: ' . $meta->getDataClassName());
+        $this->output->writeLine('- data class: ' . $meta->getEntryClassName());
 
         $this->output->writeLine('- fields:');
         foreach ($fields as $field) {
