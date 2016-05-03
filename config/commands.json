@@ -21,6 +21,10 @@
         {
             "name": "orm entries update",
             "class": "ride\\cli\\command\\orm\\OrmUpdateEntriesCommand"
+        },
+        {
+            "name": "orm files delete",
+            "class": "ride\\cli\\command\\orm\\OrmFilesDeleteCommand"
         }
     ]
 }
