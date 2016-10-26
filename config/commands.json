@@ -25,6 +25,10 @@
         {
             "name": "orm files delete",
             "class": "ride\\cli\\command\\orm\\OrmFilesDeleteCommand"
+        },
+        {
+            "name": "orm duploc delete",
+            "class": "ride\\cli\\command\\orm\\OrmDuplicateLocalizedDeleteCommand"
         }
     ]
 }
